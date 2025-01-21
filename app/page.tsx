@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import { getFarms } from "@/app/services/farms";
 import { FarmRow } from "@/app/components/FarmRow";
 import { TokenDetails } from "@/app/components/TokenDetails";
+import { FilterModal } from "@/app/components/FilterModal";
 
 export default function Home() {
   const [farms, setFarms] = useState<Farm[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedFarm, setSelectedFarm] = useState<Farm>();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     async function loadFarms() {
@@ -154,7 +156,7 @@ export default function Home() {
                             <FarmRow
                               key={farm.id}
                               farm={farm}
-                              onSelect={setSelectedFarm}
+                              onSelect={() => setSelectedFarm(farm)}
                               isSelected={selectedFarm?.id === farm.id}
                             />
                           ))
@@ -169,12 +171,16 @@ export default function Home() {
             {/* Right Side - Token Details */}
             {!loading && farms.length > 0 && (
               <div className="w-full lg:w-[400px] border-t lg:border-t-0 lg:border-l border-[#2a2a2a] bg-[#1c1c1c]">
-                <TokenDetails selectedFarm={farms[0]} />
+                <TokenDetails selectedFarm={selectedFarm || farms[0]} />
               </div>
             )}
           </div>
         </div>
       </div>
+      <FilterModal
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+      />
     </div>
   );
 }
