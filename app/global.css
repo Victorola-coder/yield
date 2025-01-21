@@ -11,8 +11,8 @@
 
 body {
   color: white;
-  background-color: #0f0f0f;
   overflow-x: hidden;
+  background-color: #0f0f0f;
 }
 
 body::-webkit-scrollbar {
@@ -69,6 +69,3 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
-
-

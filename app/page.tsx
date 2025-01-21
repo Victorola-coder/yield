@@ -1,4 +1,8 @@
+"use client";
+
 import { Metadata } from "next";
+import { useState, useEffect } from "react";
+import { FarmRow } from "@/app/components/FarmRow";
 
 export const metadata: Metadata = {
   title: "Yield | vfat - Multi-chain Yield Aggregator & Portfolio Manager",
@@ -7,6 +11,34 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const [farms, setFarms] = useState<Farm[]>([]);
+
+  useEffect(() => {
+    // Simulate API call
+    setTimeout(() => {
+      setFarms([
+        {
+          id: "1",
+          name: "CL60-WBTC/USDC",
+          platform: "Aerodrome",
+          tvl: 94222156.03,
+          weeklyRewards: 2818241.17,
+          apr: 263.05,
+          apy: 1.28,
+          tokens: [
+            { icon: "/tokens/wbtc.png", symbol: "WBTC" },
+            { icon: "/tokens/usdc.png", symbol: "USDC" },
+          ],
+          protocol: {
+            icon: "/protocols/aerodrome.png",
+            name: "Aerodrome",
+          },
+        },
+        // Add more farm data...
+      ]);
+    }, 1500);
+  }, []);
+
   return (
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
       <div className="w-full flex-1 px-[0.25rem] pb-0 sm:px-0 md:pb-[3.5rem]">
@@ -86,13 +118,19 @@ export default function Home() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td colSpan={7}>
-                            <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
-                              Loading...
-                            </div>
-                          </td>
-                        </tr>
+                        {farms.length === 0 ? (
+                          <tr>
+                            <td colSpan={7}>
+                              <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
+                                Loading...
+                              </div>
+                            </td>
+                          </tr>
+                        ) : (
+                          farms.map((farm) => (
+                            <FarmRow key={farm.id} farm={farm} />
+                          ))
+                        )}
                       </tbody>
                     </table>
                   </div>

@@ -85,3 +85,21 @@ type TextareaProps = {
 type OTPState = {
   [key: string]: string;
 };
+
+interface Farm {
+  id: string;
+  name: string;
+  platform: string;
+  tvl: number;
+  weeklyRewards: number;
+  apr: number;
+  apy: number;
+  tokens: {
+    icon: string;
+    symbol: string;
+  }[];
+  protocol: {
+    icon: string;
+    name: string;
+  };
+}
