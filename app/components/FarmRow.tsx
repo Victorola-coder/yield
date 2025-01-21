@@ -20,38 +20,33 @@ export function FarmRow({
       >
         <td className="px-4 py-2">
           <button className="text-gray-400 hover:text-white">
-            <Star size={14} />
+            <Star size={16} />
           </button>
         </td>
         <td className="px-4 py-2">
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
               {farm.tokens.map((token, i) => (
-                <div
+                <Image
                   key={i}
-                  className="cursor-pointer"
-                  onClick={() => onSelect(farm)}
-                >
-                  <Image
-                    width={20}
-                    height={20}
-                    src={token.icon}
-                    alt={token.symbol}
-                    className="rounded-[calc(var(--radius)-2px)] border border-[#2a2a2a]"
-                  />
-                </div>
+                  width={24}
+                  height={24}
+                  src={token.icon}
+                  alt={token.symbol}
+                  className="rounded-full border border-[#2a2a2a]"
+                />
               ))}
             </div>
-            <div className="flex items-center gap-1 text-sm">
+            <div className="flex items-center gap-1">
               <span className="font-medium text-white">
                 {farm.tokens.map((t) => t.symbol).join("/")}
               </span>
               <Image
-                width={14}
-                height={14}
+                width={16}
+                height={16}
                 src={farm.protocol.icon}
                 alt={farm.protocol.name}
-                className="rounded-[calc(var(--radius)-2px)]"
+                className="rounded-full"
               />
               <span className="text-xs text-gray-400">
                 {farm.protocol.name}
@@ -69,16 +64,17 @@ export function FarmRow({
           <button className="text-gray-400 hover:text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
+              className={`transform transition-transform duration-200 ${
+                isSelected ? "rotate-90" : ""
+              }`}
             >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
+              <path d="m9 18 6-6-6-6" />
             </svg>
           </button>
         </td>

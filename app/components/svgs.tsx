@@ -229,7 +229,7 @@ export function SwapIcon() {
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
       className="lucide-icon lucide"
     >
       <path d="M6 10V5c0-1.7 1.3-3 3-3h1" key="13af7h"></path>
@@ -253,7 +253,7 @@ export function Chart() {
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
       className="lucide-icon lucide lucide-chart-column-big"
     >
       <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
