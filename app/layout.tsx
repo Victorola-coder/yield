@@ -2,6 +2,8 @@ import "./global.css";
 import { Toaster } from "sonner";
 import { AOS } from "./components/global";
 import { Montserrat } from "next/font/google";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import type { Metadata, Viewport } from "next";
 
 const montserrat = Montserrat({
@@ -78,10 +80,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${montserrat.className}  antialiased`}>
+      <body className={`${montserrat.className} antialiased`}>
+        <div className="bg-background text-primary">
+          <Header />
+          {children}
+          <Footer />
+        </div>
         <Toaster richColors />
         <AOS />
-        {children}
       </body>
     </html>
   );

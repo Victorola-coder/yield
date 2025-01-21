@@ -11,14 +11,14 @@ export default function Home() {
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
       <div className="w-full flex-1 px-[0.25rem] pb-0 sm:px-0 md:pb-[3.5rem]">
         <div className="gap-2 pb-8">
+          {/* Tabs Section */}
           <div className="mx-auto !mt-2 mb-2 flex max-w-[1500px] flex-col gap-2 p-0">
-            {/* Tabs */}
-            <div className="bg-muted text-muted-foreground inline-flex h-9 items-center justify-center rounded-lg p-1 w-full">
-              <button className="ring-offset-background focus-visible:ring-ring data-[state=active]:bg-background data-[state=active]:text-foreground inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow w-full data-[state=active]:bg-background data-[state=active]:text-foreground">
+            <div className="bg-[#1c1c1c] text-muted-foreground inline-flex h-12 items-center justify-center rounded-lg p-1 w-full">
+              <button className="bg-[#2a2a2a] text-white inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all w-full">
                 Farms
               </button>
-              <button className="ring-offset-background focus-visible:ring-ring data-[state=active]:bg-background data-[state=active]:text-foreground inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow w-full">
-                <div className="mr-2">Deposits</div>
+              <button className="text-gray-400 inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all w-full hover:bg-[#2a2a2a] hover:text-white">
+                Deposits
               </button>
             </div>
           </div>
@@ -28,14 +28,14 @@ export default function Home() {
             <div className="mx-auto flex w-full max-w-[1500px]">
               <div className="flex w-full max-w-[1500px] flex-col gap-2">
                 <div className="flex gap-2 top-3">
-                  <div className="flex h-9 w-full rounded-md border border-input bg-background text-sm shadow-sm">
+                  <div className="flex h-10 w-full rounded-md border border-[#2a2a2a] bg-[#1c1c1c] text-sm">
                     <input
-                      className="w-full bg-transparent px-3 py-1 placeholder:text-muted-foreground focus-visible:outline-none"
-                      placeholder="Search assets..."
+                      className="w-full bg-transparent px-3 py-1 text-white placeholder:text-gray-500 focus:outline-none"
+                      placeholder="Search 7827 assets..."
                       autoFocus
                     />
                   </div>
-                  <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 gap-3">
+                  <button className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -61,34 +61,34 @@ export default function Home() {
                 </div>
 
                 {/* Table Component */}
-                <div className="relative overflow-hidden max-h-[80vh] max-w-full rounded border">
+                <div className="relative overflow-hidden max-h-[80vh] max-w-full rounded border border-[#2a2a2a] bg-[#1c1c1c]">
                   <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
-                      <thead className="[&_tr]:border-b border-b">
+                      <thead className="border-b border-[#2a2a2a]">
                         <tr>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium"></th>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium">
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium"></th>
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
                             Asset
                           </th>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium">
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
                             TVL
                           </th>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium">
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
                             Weekly Rewards
                           </th>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium">
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
                             APR
                           </th>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium">
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
                             APY
                           </th>
-                          <th className="text-muted-foreground h-10 px-2 text-left align-middle font-medium"></th>
+                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium"></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td colSpan={7}>
-                            <div className="bg-primary/10 animate-pulse rounded-md flex h-[290px] w-full items-center justify-center rounded-t-none text-xs text-muted-foreground">
+                            <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
                               Loading...
                             </div>
                           </td>

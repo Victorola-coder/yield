@@ -1,4 +1,12 @@
+import {
+  SwapIcon,
+  YieldIcon,
+  ThemeToggle,
+  SettingsButton,
+  ConnectWalletButton,
+} from "./svgs";
 import Link from "next/link";
+import { Coins, Landmark, ChartColumnBig, BriefcaseIcon } from "lucide-react";
 
 export function Header() {
   return (
@@ -6,7 +14,7 @@ export function Header() {
       <div className="flex h-full min-h-12 w-full items-center justify-between gap-2 border-b border-solid border-border bg-background bg-opacity-95 pr-2 backdrop-blur-sm">
         <div className="flex h-12">
           <Link href="/" className="flex items-center px-4" aria-label="Home">
-            <div className="w-[32px] text-foreground">
+            <div className="w-[32px] text-gray-400">
               <svg
                 viewBox="0 0 285 216"
                 fill="none"
@@ -29,13 +37,13 @@ export function Header() {
             <NavLink href="/swap" icon={<SwapIcon />}>
               Swap
             </NavLink>
-            <NavLink href="/tokens" icon={<CoinsIcon />}>
+            <NavLink href="/tokens" icon={<Coins />}>
               Tokens
             </NavLink>
-            <NavLink href="/lending-markets" icon={<LandmarkIcon />}>
+            <NavLink href="/lending-markets" icon={<Landmark />}>
               Lending
             </NavLink>
-            <NavLink href="/stats" icon={<ChartIcon />}>
+            <NavLink href="/stats" icon={<ChartColumnBig />}>
               Stats
             </NavLink>
           </div>
@@ -52,7 +60,6 @@ export function Header() {
   );
 }
 
-// Helper Components
 function NavLink({
   href,
   children,
@@ -60,15 +67,15 @@ function NavLink({
   active,
 }: {
   href: string;
-  children: React.ReactNode;
-  icon: React.ReactNode;
   active?: boolean;
+  icon: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
-      className={`focus-visible:ring-ring justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground px-4 py-2 flex items-center gap-2 h-full rounded-none pr-4 ${
-        active ? "text-primary" : "text-muted-foreground"
+      className={`focus-visible:ring-ring justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-700 hover:text-white px-4 py-2 flex items-center gap-2 h-full rounded-none pr-4 ${
+        active ? "text-white" : "text-gray-400"
       }`}
     >
       {icon}
@@ -76,123 +83,3 @@ function NavLink({
     </Link>
   );
 }
-
-function ConnectWalletButton() {
-  return (
-    <button className="focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2 gap-3">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-        <polyline points="10 17 15 12 10 7" />
-        <line x1="15" x2="3" y1="12" y2="12" />
-      </svg>
-      Connect Wallet
-    </button>
-  );
-}
-
-function SettingsButton() {
-  return (
-    <button className="focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9 text-foreground">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M20 7h-9" />
-        <path d="M14 17H5" />
-        <circle cx="17" cy="17" r="3" />
-        <circle cx="7" cy="7" r="3" />
-      </svg>
-    </button>
-  );
-}
-
-function ThemeToggle() {
-  return (
-    <button className="focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground text-foreground h-9 w-9">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2" />
-        <path d="M12 20v2" />
-        <path d="m4.93 4.93 1.41 1.41" />
-        <path d="m17.66 17.66 1.41 1.41" />
-        <path d="M2 12h2" />
-        <path d="M20 12h2" />
-        <path d="m6.34 17.66-1.41 1.41" />
-        <path d="m19.07 4.93-1.41 1.41" />
-      </svg>
-    </button>
-  );
-}
-
-// Icons
-const BriefcaseIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 12h.01" />
-    <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-    <path d="M22 13a18.15 18.15 0 0 1-20 0" />
-    <rect width="20" height="14" x="2" y="6" rx="2" />
-  </svg>
-);
-
-const YieldIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M8 14V4.5a2.5 2.5 0 0 0-5 0V14" />
-    <path d="m8 8 6-5 8 6" />
-    <path d="M20 4v10" />
-    <rect width="4" height="4" x="12" y="10" />
-    <path d="M2 14h20" />
-    <path d="m2 22 5-8" />
-    <path d="m7 22 5-8" />
-    <path d="M22 22H12l5-8" />
-    <path d="M15 18h7" />
-  </svg>
-);
-
-// Add other icon components similarly...

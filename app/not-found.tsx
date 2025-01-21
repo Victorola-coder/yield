@@ -43,7 +43,7 @@ export default function NotFound() {
             <motion.button
               whileTap={{ scale: 1.1 }}
               whileHover={{ scale: 0.99 }}
-              className="bg-primary px-[22.8px] py-[14.85px] whitespace-nowrap text-[14.5px] font-medium"
+              className="bg-gray-400 text-white px-[22.8px] py-[14.85px] whitespace-nowrap text-[14.5px] font-medium"
             >
               Back to home
             </motion.button>
