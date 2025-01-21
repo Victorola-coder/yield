@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://vfat.io/yield"),
   icons: {
-    icon: "/favicon.png",
+    icon: "/images/favicon.png",
   },
   title: "vfat - Multi-chain Yield Aggregator & Portfolio Manager",
   description:
