@@ -12,8 +12,8 @@ export function TokenDetails({ selectedFarm }: TokenDetailsProps) {
   if (!selectedFarm) return null;
 
   return (
-    <div className="fixed right-0 top-[3rem] h-[calc(100vh-3rem)] w-[400px] border-l border-[#2a2a2a] bg-[#1c1c1c]">
-      {/* Header with View Farm button */}
+    <div className="h-full">
+      {/* Header */}
       <div className="flex items-center justify-between border-b border-[#2a2a2a] p-4">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 text-sm text-white">

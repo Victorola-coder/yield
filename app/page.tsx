@@ -41,7 +41,6 @@ export default function Home() {
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
       <div className="w-full flex-1 px-[0.25rem] pb-0 sm:px-0 md:pb-[3.5rem]">
         <div className="gap-2 pb-8">
-          {selectedFarm && <TokenDetails selectedFarm={selectedFarm} />}
           {/* Tabs Section */}
           <div className="mx-auto !mt-2 mb-2 flex max-w-[1500px] flex-col gap-2 p-0">
             <div className="bg-[#1c1c1c] text-muted-foreground inline-flex h-12 items-center justify-center rounded-lg p-1 w-full">
@@ -54,47 +53,53 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Search and Filter Section */}
-          <div className="mx-auto mb-2 mt-2 flex flex-col gap-4 p-0">
-            <div className="mx-auto flex w-full max-w-[1500px]">
-              <div className="flex w-full max-w-[1500px] flex-col gap-2">
-                <div className="flex gap-2 top-3">
-                  <div className="flex h-10 w-full rounded-md border border-[#2a2a2a] bg-[#1c1c1c] text-sm">
-                    <input
-                      className="w-full bg-transparent px-3 py-1 text-white placeholder:text-gray-500 focus:outline-none"
-                      placeholder={`Search ${farms.length} assets...`}
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      autoFocus
-                    />
+          {/* Main Content Area */}
+          <div className="mx-auto mb-2 mt-2 flex gap-4">
+            {/* Left Side - Table */}
+            <div className="flex-1">
+              <div className="flex flex-col gap-4">
+                {/* Search and Filter Section */}
+                <div className="flex gap-2">
+                  <div className="flex w-full max-w-[1500px] flex-col gap-2">
+                    <div className="flex gap-2 top-3">
+                      <div className="flex h-10 w-full rounded-md border border-[#2a2a2a] bg-[#1c1c1c] text-sm">
+                        <input
+                          className="w-full bg-transparent px-3 py-1 text-white placeholder:text-gray-500 focus:outline-none"
+                          placeholder={`Search ${farms.length} assets...`}
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          autoFocus
+                        />
+                      </div>
+                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="4" x2="4" y1="21" y2="14" />
+                          <line x1="4" x2="4" y1="10" y2="3" />
+                          <line x1="12" x2="12" y1="21" y2="12" />
+                          <line x1="12" x2="12" y1="8" y2="3" />
+                          <line x1="20" x2="20" y1="21" y2="16" />
+                          <line x1="20" x2="20" y1="12" y2="3" />
+                          <line x1="2" x2="6" y1="14" y2="14" />
+                          <line x1="10" x2="14" y1="8" y2="8" />
+                          <line x1="18" x2="22" y1="16" y2="16" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
-                  <button className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="4" x2="4" y1="21" y2="14" />
-                      <line x1="4" x2="4" y1="10" y2="3" />
-                      <line x1="12" x2="12" y1="21" y2="12" />
-                      <line x1="12" x2="12" y1="8" y2="3" />
-                      <line x1="20" x2="20" y1="21" y2="16" />
-                      <line x1="20" x2="20" y1="12" y2="3" />
-                      <line x1="2" x2="6" y1="14" y2="14" />
-                      <line x1="10" x2="14" y1="8" y2="8" />
-                      <line x1="18" x2="22" y1="16" y2="16" />
-                    </svg>
-                  </button>
                 </div>
 
                 {/* Table Component */}
-                <div className="relative overflow-hidden max-h-[80vh] max-w-full rounded border border-[#2a2a2a] bg-[#1c1c1c]">
+                <div className="relative overflow-hidden rounded border border-[#2a2a2a] bg-[#1c1c1c]">
                   <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
                       <thead className="border-b border-[#2a2a2a]">
@@ -158,6 +163,13 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            {/* Right Side - Token Details */}
+            {!loading && farms.length > 0 && (
+              <div className="w-[400px] border-l border-[#2a2a2a] bg-[#1c1c1c]">
+                <TokenDetails selectedFarm={farms[0]} />
+              </div>
+            )}
           </div>
         </div>
       </div>
