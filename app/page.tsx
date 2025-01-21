@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { FarmRow } from "@/app/components/FarmRow";
 import { getFarms } from "@/app/services/farms";
+import { TokenDetails } from "./components/TokenDetails";
 
 export default function Home() {
   const [farms, setFarms] = useState<Farm[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedFarm, setSelectedFarm] = useState<Farm>();
 
   useEffect(() => {
     async function loadFarms() {
@@ -39,6 +41,7 @@ export default function Home() {
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
       <div className="w-full flex-1 px-[0.25rem] pb-0 sm:px-0 md:pb-[3.5rem]">
         <div className="gap-2 pb-8">
+          {selectedFarm && <TokenDetails selectedFarm={selectedFarm} />}
           {/* Tabs Section */}
           <div className="mx-auto !mt-2 mb-2 flex max-w-[1500px] flex-col gap-2 p-0">
             <div className="bg-[#1c1c1c] text-muted-foreground inline-flex h-12 items-center justify-center rounded-lg p-1 w-full">
@@ -136,13 +139,17 @@ export default function Home() {
                           <tr>
                             <td colSpan={7}>
                               <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
-                                No farms found
+                                No results found.
                               </div>
                             </td>
                           </tr>
                         ) : (
                           filteredFarms.map((farm) => (
-                            <FarmRow key={farm.id} farm={farm} />
+                            <FarmRow
+                              key={farm.id}
+                              farm={farm}
+                              onSelect={setSelectedFarm}
+                            />
                           ))
                         )}
                       </tbody>

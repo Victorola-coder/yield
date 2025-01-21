@@ -2,9 +2,18 @@
 
 import Image from "next/image";
 
-export function FarmRow({ farm }: { farm: Farm }) {
+export function FarmRow({
+  farm,
+  onSelect,
+}: {
+  farm: Farm;
+  onSelect: (farm: Farm) => void;
+}) {
   return (
-    <tr className="border-b border-[#2a2a2a] hover:bg-[#2a2a2a]/20">
+    <tr
+      className="border-b border-[#2a2a2a] hover:bg-[#2a2a2a]/20 cursor-pointer"
+      onClick={() => onSelect(farm)}
+    >
       <td className="px-4 py-2">
         <button className="text-gray-400 hover:text-white">
           <svg
