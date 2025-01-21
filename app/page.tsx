@@ -4,12 +4,6 @@ import { Metadata } from "next";
 import { useState, useEffect } from "react";
 import { FarmRow } from "@/app/components/FarmRow";
 
-export const metadata: Metadata = {
-  title: "Yield | vfat - Multi-chain Yield Aggregator & Portfolio Manager",
-  description:
-    "Simplify highly complex operations such as entering/exiting positions, compounding, or rebalancing into single transactions, while maintaining self-custody",
-};
-
 export default function Home() {
   const [farms, setFarms] = useState<Farm[]>([]);
 
