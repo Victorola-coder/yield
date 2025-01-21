@@ -10,6 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedFarm, setSelectedFarm] = useState<Farm>();
+  const [selectedFarmId, setSelectedFarmId] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadFarms() {
@@ -36,6 +37,10 @@ export default function Home() {
         token.symbol.toLowerCase().includes(searchTerm.toLowerCase())
       )
   );
+
+  const handleFarmSelect = (farm: Farm) => {
+    setSelectedFarmId(selectedFarmId === farm.id ? null : farm.id);
+  };
 
   return (
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
@@ -153,7 +158,8 @@ export default function Home() {
                             <FarmRow
                               key={farm.id}
                               farm={farm}
-                              onSelect={setSelectedFarm}
+                              onSelect={handleFarmSelect}
+                              isSelected={selectedFarmId === farm.id}
                             />
                           ))
                         )}
@@ -167,7 +173,7 @@ export default function Home() {
             {/* Right Side - Token Details */}
             {!loading && farms.length > 0 && (
               <div className="w-full lg:w-[400px] border-t lg:border-t-0 lg:border-l border-[#2a2a2a] bg-[#1c1c1c]">
-                <TokenDetails selectedFarm={farms[0]} />
+                <TokenDetails selectedFarm={selectedFarm} />
               </div>
             )}
           </div>

@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // if you are using variable and want to use more than one fonts for your webapp,you could define it here. like i did 
+        // if you are using variable and want to use more than one fonts for your webapp,you could define it here. like i did
         geistSans: ["var(--font-geist-sans)"],
       },
       keyframes: {
@@ -52,7 +52,14 @@ const config: Config = {
             opacity: "1",
           },
         },
-        spin: {},
+        expand: {
+          "0%": { maxHeight: "0", opacity: "0" },
+          "100%": { maxHeight: "1000px", opacity: "1" },
+        },
+        collapse: {
+          "0%": { maxHeight: "1000px", opacity: "1" },
+          "100%": { maxHeight: "0", opacity: "0" },
+        },
       },
       animation: {
         "fade-in": "fade-effect 300ms linear",
@@ -61,6 +68,8 @@ const config: Config = {
         "rotate-clockwise": "rotate-clockwise 1s infinite linear",
         "loader-opacity": "loader 1s ease-in-out alternate infinite",
         "spin-slow": "spin 20s linear infinite",
+        expand: "expand 0.3s ease-out forwards",
+        collapse: "collapse 0.3s ease-out forwards",
       },
       colors: {
         primary: {
