@@ -1,0 +1,23 @@
+{
+  "name": "vfat - Multi-chain Yield Aggregator & Portfolio Manager",
+  "short_name": "vfat",
+  "scope": "/",
+  "start_url": ".",
+  "description": "vfat is a yield aggregator that simplifies and automates yield farming, manages multi-wallet portfolios, tracks lending pools and other cryptocurrency details.",
+  "iconPath": "/favicons/icon-512.png",
+  "icons": [
+    {
+      "src": "/favicons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/favicons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "fullscreen"
+}
