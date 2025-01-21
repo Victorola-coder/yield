@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FarmRow } from "@/app/components/FarmRow";
 import { getFarms } from "@/app/services/farms";
-import { TokenDetails } from "./components/TokenDetails";
+import { FarmRow } from "@/app/components/FarmRow";
+import { TokenDetails } from "@/app/components/TokenDetails";
 
 export default function Home() {
   const [farms, setFarms] = useState<Farm[]>([]);
@@ -54,13 +54,13 @@ export default function Home() {
           </div>
 
           {/* Main Content Area */}
-          <div className="mx-auto mb-2 mt-2 flex gap-4">
+          <div className="mx-auto mb-2 mt-2 flex flex-col lg:flex-row gap-4 max-w-[1500px]">
             {/* Left Side - Table */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <div className="flex flex-col gap-4">
                 {/* Search and Filter Section */}
                 <div className="flex gap-2">
-                  <div className="flex w-full max-w-[1500px] flex-col gap-2">
+                  <div className="flex w-full flex-col gap-2">
                     <div className="flex gap-2 top-3">
                       <div className="flex h-10 w-full rounded-md border border-[#2a2a2a] bg-[#1c1c1c] text-sm">
                         <input
@@ -99,7 +99,7 @@ export default function Home() {
                 </div>
 
                 {/* Table Component */}
-                <div className="relative overflow-hidden rounded border border-[#2a2a2a] bg-[#1c1c1c]">
+                <div className="relative overflow-x-auto rounded border border-[#2a2a2a] bg-[#1c1c1c]">
                   <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
                       <thead className="border-b border-[#2a2a2a]">
@@ -166,7 +166,7 @@ export default function Home() {
 
             {/* Right Side - Token Details */}
             {!loading && farms.length > 0 && (
-              <div className="w-[400px] border-l border-[#2a2a2a] bg-[#1c1c1c]">
+              <div className="w-full lg:w-[400px] border-t lg:border-t-0 lg:border-l border-[#2a2a2a] bg-[#1c1c1c]">
                 <TokenDetails selectedFarm={farms[0]} />
               </div>
             )}

@@ -228,7 +228,7 @@ export function SwapIcon() {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
-      stroke-linecap="round"
+      strokeLinecap="round"
       stroke-linejoin="round"
       className="lucide-icon lucide"
     >
@@ -252,7 +252,7 @@ export function Chart() {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
-      stroke-linecap="round"
+      strokeLinecap="round"
       stroke-linejoin="round"
       className="lucide-icon lucide lucide-chart-column-big"
     >

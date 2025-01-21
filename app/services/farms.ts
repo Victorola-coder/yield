@@ -33,11 +33,11 @@ function getMockFarms(): Farm[] {
       apr: 263.05,
       apy: 1.28,
       tokens: [
-        { icon: "/tokens/wbtc.png", symbol: "WBTC" },
-        { icon: "/tokens/usdc.png", symbol: "USDC" },
+        { icon: "/images/user.png", symbol: "WBTC" },
+        { icon: "/images/user.png", symbol: "USDC" },
       ],
       protocol: {
-        icon: "/protocols/aerodrome.png",
+        icon: "/images/user.png",
         name: "Aerodrome",
       },
     },
@@ -50,14 +50,13 @@ function getMockFarms(): Farm[] {
       apr: 75.21,
       apy: 111.97,
       tokens: [
-        { icon: "/tokens/usdc.png", symbol: "USDC" },
-        { icon: "/tokens/weth.png", symbol: "WETH" },
+        { icon: "/images/user.png", symbol: "USDC" },
+        { icon: "/images/user.png", symbol: "WETH" },
       ],
       protocol: {
-        icon: "/protocols/aerodrome.png",
+        icon: "/images/user.png",
         name: "Aerodrome",
       },
     },
-    // Add more mock farms to match the reference UI
   ];
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState } from "react";
 
 interface TokenDetailsProps {
@@ -14,16 +13,16 @@ export function TokenDetails({ selectedFarm }: TokenDetailsProps) {
   return (
     <div className="h-full">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#2a2a2a] p-4">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 text-sm text-white">
+      <div className="flex items-center justify-between gap-2.5 border-b border-[#2a2a2a] p-4 flex-wrap sm:flex-nowrap">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex items-center gap-2 text-sm text-white truncate">
             {selectedFarm.name} on {selectedFarm.protocol.name}
           </div>
-          <span className="rounded bg-[#2a2a2a] px-2 py-0.5 text-xs text-gray-400">
+          <span className="rounded bg-[#2a2a2a] px-2 py-0.5 text-xs text-gray-400 whitespace-nowrap">
             {selectedFarm.apr.toFixed(2)}%
           </span>
         </div>
-        <button className="rounded bg-[#2a2a2a] px-3 py-1 text-sm text-white hover:bg-[#3a3a3a]">
+        <button className="w-full sm:w-auto mt-2 sm:mt-0 rounded whitespace-nowrap bg-[#2a2a2a] px-3 py-1 text-sm text-white hover:bg-[#3a3a3a]">
           View farm
         </button>
       </div>
@@ -31,10 +30,10 @@ export function TokenDetails({ selectedFarm }: TokenDetailsProps) {
       <div className="flex flex-col gap-4 p-4">
         {/* Price Tabs */}
         <div className="flex rounded-lg bg-[#2a2a2a] p-1">
-          <button className="flex-1 rounded bg-[#1c1c1c] py-2 text-sm text-white">
+          <button className="flex-1 rounded bg-[#1c1c1c] py-2 text-sm text-white truncate px-2">
             Price in {selectedFarm.tokens[0].symbol}
           </button>
-          <button className="flex-1 py-2 text-sm text-gray-400">
+          <button className="flex-1 py-2 text-sm text-gray-400 truncate px-2">
             Price in {selectedFarm.tokens[1].symbol}
           </button>
         </div>
