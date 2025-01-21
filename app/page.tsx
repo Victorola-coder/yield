@@ -1,37 +1,39 @@
 "use client";
 
-import { Metadata } from "next";
 import { useState, useEffect } from "react";
 import { FarmRow } from "@/app/components/FarmRow";
+import { getFarms } from "@/app/services/farms";
 
 export default function Home() {
   const [farms, setFarms] = useState<Farm[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setFarms([
-        {
-          id: "1",
-          name: "CL60-WBTC/USDC",
-          platform: "Aerodrome",
-          tvl: 94222156.03,
-          weeklyRewards: 2818241.17,
-          apr: 263.05,
-          apy: 1.28,
-          tokens: [
-            { icon: "/tokens/wbtc.png", symbol: "WBTC" },
-            { icon: "/tokens/usdc.png", symbol: "USDC" },
-          ],
-          protocol: {
-            icon: "/protocols/aerodrome.png",
-            name: "Aerodrome",
-          },
-        },
-        // Add more farm data...
-      ]);
-    }, 1500);
+    async function loadFarms() {
+      try {
+        const data = await getFarms();
+        setFarms(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load farms");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadFarms();
   }, []);
+
+  // Add search functionality
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredFarms = farms.filter(
+    (farm) =>
+      farm.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      farm.tokens.some((token) =>
+        token.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+  );
 
   return (
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
@@ -57,7 +59,9 @@ export default function Home() {
                   <div className="flex h-10 w-full rounded-md border border-[#2a2a2a] bg-[#1c1c1c] text-sm">
                     <input
                       className="w-full bg-transparent px-3 py-1 text-white placeholder:text-gray-500 focus:outline-none"
-                      placeholder="Search 7827 assets..."
+                      placeholder={`Search ${farms.length} assets...`}
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       autoFocus
                     />
                   </div>
@@ -112,7 +116,7 @@ export default function Home() {
                         </tr>
                       </thead>
                       <tbody>
-                        {farms.length === 0 ? (
+                        {loading ? (
                           <tr>
                             <td colSpan={7}>
                               <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
@@ -120,8 +124,24 @@ export default function Home() {
                               </div>
                             </td>
                           </tr>
+                        ) : error ? (
+                          <tr>
+                            <td colSpan={7}>
+                              <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
+                                {error}
+                              </div>
+                            </td>
+                          </tr>
+                        ) : filteredFarms.length === 0 ? (
+                          <tr>
+                            <td colSpan={7}>
+                              <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
+                                No farms found
+                              </div>
+                            </td>
+                          </tr>
                         ) : (
-                          farms.map((farm) => (
+                          filteredFarms.map((farm) => (
                             <FarmRow key={farm.id} farm={farm} />
                           ))
                         )}

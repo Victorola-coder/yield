@@ -103,3 +103,29 @@ interface Farm {
     name: string;
   };
 }
+
+interface Token {
+  icon: string;
+  symbol: string;
+}
+interface Protocol {
+  icon: string;
+  name: string;
+}
+
+interface Farm {
+  id: string;
+  name: string;
+  platform: string;
+  tvl: number;
+  weeklyRewards: number;
+  apr: number;
+  apy: number;
+  tokens: Token[];
+  protocol: Protocol;
+}
+
+interface FarmsResponse {
+  farms: Farm[];
+  total: number;
+}
