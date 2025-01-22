@@ -25,15 +25,15 @@ export function TokenDetails({ selectedFarm }: TokenDetailsProps) {
             {selectedFarm.apr.toFixed(2)}%
           </span>
         </div>
-        <button className="w-full sm:w-auto mt-2 sm:mt-0 rounded whitespace-nowrap bg-gray-100 px-3 py-1 text-sm text-gray-900 hover:bg-gray-200 transition-colors">
+        <button className="w-full md:w-auto mt-2 sm:mt-0 rounded whitespace-nowrap bg-gray-100 px-3 md:py-2 py-1 text-sm text-gray-900 hover:bg-gray-200 transition-colors">
           View farm
         </button>
       </div>
 
       <div className="flex flex-col gap-4 p-4">
         {/* Price Tabs */}
-        <div className="flex rounded-lg bg-gray-100 p-1">
-          <button className="flex-1 rounded bg-white shadow-sm py-2 text-sm text-gray-900 truncate px-2">
+        <div className="flex  max-w-[250px] rounded-lg bg-gray-100 p-1">
+          <button className=" flex-1 rounded bg-white shadow-sm py-2 text-sm text-gray-900 truncate px-2">
             Price in {selectedFarm.tokens[0].symbol}
           </button>
           <button className="flex-1 py-2 text-sm text-gray-500 hover:text-gray-900 truncate px-2">
@@ -120,10 +120,30 @@ export function TokenDetails({ selectedFarm }: TokenDetailsProps) {
 
         {/* Position Graph */}
         <div className="relative h-32 rounded-lg border border-gray-200 bg-white p-4 shadow-sm overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-full w-0.5 bg-green-500/50"></div>
-            <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-green-100 to-transparent"></div>
+          {/* Price Labels */}
+          <div className="absolute top-2 right-2 text-xs text-gray-500">
+            1.0000000 (0.01%)
           </div>
+          <div className="absolute bottom-2 left-2 text-xs text-gray-500">
+            0.9999000 (0.00%)
+          </div>
+
+          {/* Graph Content */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Vertical Line */}
+            <div className="h-full w-0.5 bg-green-600"></div>
+
+            {/* Price Range Box */}
+            <div className="absolute right-[45%] h-16 w-[10%] bg-green-600/20 border-l-2 border-r-2 border-green-600"></div>
+
+            {/* Current Price Indicator */}
+            <div className="absolute right-[40%] px-2 py-1 bg-blue-500/20 rounded text-xs text-blue-600">
+              0.9999970
+            </div>
+          </div>
+
+          {/* X-axis Line */}
+          <div className="absolute bottom-0 w-full h-[1px] bg-gray-200"></div>
         </div>
 
         {/* Automation Toggles */}
