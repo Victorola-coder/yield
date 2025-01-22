@@ -53,7 +53,6 @@ function FooterLink({
   return (
     <Link
       href={href}
-      target="_blank"
       className="focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-700 hover:text-white h-8 text-xs gap-2 rounded-none px-[10px] text-gray-500"
     >
       {icon}
@@ -74,7 +73,6 @@ function SocialLink({
   return (
     <Link
       href={href}
-      target="_blank"
       className="focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-8 text-xs rounded-none px-[10px] text-muted-foreground"
       aria-label={label}
     >
