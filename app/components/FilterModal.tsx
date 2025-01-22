@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 interface FilterModalProps {
@@ -8,8 +10,8 @@ interface FilterModalProps {
 export function FilterModal({ isOpen, onClose }: FilterModalProps) {
   const [minTVL, setMinTVL] = useState("1");
   const [minAPR, setMinAPR] = useState("0");
-  const [showFavorites, setShowFavorites] = useState(false);
   const [minWeeklyRewards, setMinWeeklyRewards] = useState("100");
+  const [showFavorites, setShowFavorites] = useState(false);
 
   // Add click handler for the backdrop
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -22,7 +24,7 @@ export function FilterModal({ isOpen, onClose }: FilterModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-end pt-16 bg-black/50"
+      className="fixed inset-0 z-50 bg-black/50 flex items-start justify-end pt-16"
       onClick={handleBackdropClick}
     >
       <div className="w-[350px] rounded-[calc(var(--radius)-2px)] border border-[#2a2a2a] bg-[#1c1c1c] p-4">
@@ -126,7 +128,15 @@ export function FilterModal({ isOpen, onClose }: FilterModalProps) {
           </div>
 
           {/* Reset button */}
-          <button className="w-full rounded-[calc(var(--radius)-2px)] bg-red-900/20 px-4 py-2 text-sm text-red-500 hover:bg-red-900/30">
+          <button
+            className="w-full rounded-[calc(var(--radius)-2px)] bg-red-900/20 px-4 py-2 text-sm text-red-500 hover:bg-red-900/30"
+            onClick={() => {
+              setMinTVL("1");
+              setMinAPR("0");
+              setMinWeeklyRewards("100");
+              setShowFavorites(false);
+            }}
+          >
             Reset Filters
           </button>
         </div>

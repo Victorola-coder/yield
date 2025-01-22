@@ -84,7 +84,11 @@ export default function Home() {
                           autoFocus
                         />
                       </div>
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2">
+                      {/* filter button */}
+                      <button
+                        onClick={() => setIsFilterOpen(!isFilterOpen)}
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
