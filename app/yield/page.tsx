@@ -11,6 +11,8 @@ export default function YieldPage() {
   const [error, setError] = useState<string | null>(null);
   const [selectedFarm, setSelectedFarm] = useState<Farm>();
   const [searchTerm, setSearchTerm] = useState("");
+  const [expandedFarmId, setExpandedFarmId] = useState<string | null>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     async function loadFarms() {
@@ -35,6 +37,11 @@ export default function YieldPage() {
       )
   );
 
+  const handleFarmSelect = (farm: Farm) => {
+    setSelectedFarm(farm);
+    setExpandedFarmId(expandedFarmId === farm.id ? null : farm.id);
+  };
+
   return (
     <div className="flex h-full min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center">
       <div className="w-full flex-1 px-4 py-8">
@@ -57,38 +64,45 @@ export default function YieldPage() {
               <div className="space-y-4">
                 {/* Search Bar */}
                 <div className="flex gap-2">
-                  <div className="flex h-10 w-full rounded-md border border-gray-200 bg-white">
-                    <input
-                      className="w-full px-3 py-2 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none"
-                      placeholder={`Search ${farms.length} assets...`}
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      autoFocus
-                    />
+                  <div className="flex w-full flex-col gap-2">
+                    <div className="flex gap-2 top-3">
+                      <div className="flex h-10 w-full rounded-md border border-gray-200 bg-white">
+                        <input
+                          className="w-full px-3 py-2 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none"
+                          placeholder={`Search ${farms.length} assets...`}
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          autoFocus
+                        />
+                      </div>
+                      <button
+                        onClick={() => setIsFilterOpen(!isFilterOpen)}
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="4" x2="4" y1="21" y2="14" />
+                          <line x1="4" x2="4" y1="10" y2="3" />
+                          <line x1="12" x2="12" y1="21" y2="12" />
+                          <line x1="12" x2="12" y1="8" y2="3" />
+                          <line x1="20" x2="20" y1="21" y2="16" />
+                          <line x1="20" x2="20" y1="12" y2="3" />
+                          <line x1="2" x2="6" y1="14" y2="14" />
+                          <line x1="10" x2="14" y1="8" y2="8" />
+                          <line x1="18" x2="22" y1="16" y2="16" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
-                  <button className="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 hover:bg-gray-50">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="4" x2="4" y1="21" y2="14" />
-                      <line x1="4" x2="4" y1="10" y2="3" />
-                      <line x1="12" x2="12" y1="21" y2="12" />
-                      <line x1="12" x2="12" y1="8" y2="3" />
-                      <line x1="20" x2="20" y1="21" y2="16" />
-                      <line x1="20" x2="20" y1="12" y2="3" />
-                      <line x1="2" x2="6" y1="14" y2="14" />
-                      <line x1="10" x2="14" y1="8" y2="8" />
-                      <line x1="18" x2="22" y1="16" y2="16" />
-                    </svg>
-                  </button>
                 </div>
 
                 {/* Table */}
@@ -146,8 +160,8 @@ export default function YieldPage() {
                             <FarmRow
                               key={farm.id}
                               farm={farm}
-                              onSelect={setSelectedFarm}
-                              isSelected={selectedFarm?.id === farm.id}
+                              onSelect={() => handleFarmSelect(farm)}
+                              isSelected={expandedFarmId === farm.id}
                             />
                           ))
                         )}

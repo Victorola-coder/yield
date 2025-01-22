@@ -12,6 +12,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [selectedFarm, setSelectedFarm] = useState<Farm>();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedFarmId, setSelectedFarmId] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadFarms() {
@@ -39,6 +40,12 @@ export default function Home() {
         token.symbol.toLowerCase().includes(searchTerm.toLowerCase())
       )
   );
+
+  const handleFarmSelect = (farmId: string) => {
+    setSelectedFarmId((currentId) => (currentId === farmId ? null : farmId));
+    const farm = farms.find((f) => f.id === farmId);
+    setSelectedFarm(farm);
+  };
 
   return (
     <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
@@ -156,8 +163,8 @@ export default function Home() {
                             <FarmRow
                               key={farm.id}
                               farm={farm}
-                              onSelect={() => setSelectedFarm(farm)}
-                              isSelected={selectedFarm?.id === farm.id}
+                              onSelect={handleFarmSelect}
+                              isSelected={selectedFarmId === farm.id}
                             />
                           ))
                         )}

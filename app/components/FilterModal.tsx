@@ -11,10 +11,20 @@ export function FilterModal({ isOpen, onClose }: FilterModalProps) {
   const [minWeeklyRewards, setMinWeeklyRewards] = useState("100");
   const [showFavorites, setShowFavorites] = useState(false);
 
+  // Add click handler for the backdrop
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-end pt-16">
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-end pt-16 bg-black/50"
+      onClick={handleBackdropClick}
+    >
       <div className="w-[350px] rounded-[calc(var(--radius)-2px)] border border-[#2a2a2a] bg-[#1c1c1c] p-4">
         <div className="flex flex-col gap-6">
           {/* Chains */}

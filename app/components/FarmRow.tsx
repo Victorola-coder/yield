@@ -12,10 +12,19 @@ export function FarmRow({
   isSelected: boolean;
   onSelect: (farmId: string) => void;
 }) {
+  const handleRowClick = () => {
+    onSelect(farm.id);
+  };
+
+  const handleTokenClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onSelect(farm.id);
+  };
+
   return (
     <>
       <tr
-        onClick={() => onSelect(farm.id)}
+        onClick={handleRowClick}
         className="border-b border-[#2a2a2a] hover:bg-[#2a2a2a]/20 cursor-pointer"
       >
         <td className="px-4 py-2">
@@ -30,10 +39,7 @@ export function FarmRow({
                 <div
                   key={i}
                   className="cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onSelect(farm.id);
-                  }}
+                  onClick={handleTokenClick}
                 >
                   <Image
                     width={20}
