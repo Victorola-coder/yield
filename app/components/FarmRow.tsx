@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { useState } from "react";
 
 export function FarmRow({
   farm,
@@ -12,6 +13,8 @@ export function FarmRow({
   isSelected: boolean;
   onSelect: (farmId: string) => void;
 }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
   const handleRowClick = () => {
     onSelect(farm.id);
   };
@@ -21,6 +24,11 @@ export function FarmRow({
     onSelect(farm.id);
   };
 
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent row click/expansion
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <>
       <tr
@@ -28,8 +36,13 @@ export function FarmRow({
         className="border-b border-[#2a2a2a] hover:bg-[#2a2a2a]/20 cursor-pointer"
       >
         <td className="px-4 py-2">
-          <button className="text-gray-400 hover:text-white">
-            <Star size={14} />
+          <button
+            className={`hover:text-white ${
+              isFavorite ? "text-yellow-500" : "text-gray-400"
+            }`}
+            onClick={handleFavoriteClick}
+          >
+            <Star size={14} fill={isFavorite ? "currentColor" : "none"} />
           </button>
         </td>
         <td className="px-4 py-2">

@@ -8,8 +8,8 @@ interface FilterModalProps {
 export function FilterModal({ isOpen, onClose }: FilterModalProps) {
   const [minTVL, setMinTVL] = useState("1");
   const [minAPR, setMinAPR] = useState("0");
-  const [minWeeklyRewards, setMinWeeklyRewards] = useState("100");
   const [showFavorites, setShowFavorites] = useState(false);
+  const [minWeeklyRewards, setMinWeeklyRewards] = useState("100");
 
   // Add click handler for the backdrop
   const handleBackdropClick = (e: React.MouseEvent) => {
