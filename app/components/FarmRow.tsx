@@ -25,7 +25,7 @@ export function FarmRow({
   };
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent row click/expansion
+    e.stopPropagation();
     setIsFavorite(!isFavorite);
   };
 
@@ -33,11 +33,11 @@ export function FarmRow({
     <>
       <tr
         onClick={handleRowClick}
-        className="border-b border-[#2a2a2a] hover:bg-[#2a2a2a]/20 cursor-pointer"
+        className="border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors"
       >
         <td className="px-4 py-2">
           <button
-            className={`hover:text-white ${
+            className={`hover:text-gray-900 transition-colors ${
               isFavorite ? "text-yellow-500" : "text-gray-400"
             }`}
             onClick={handleFavoriteClick}
@@ -51,7 +51,7 @@ export function FarmRow({
               {farm.tokens.map((token, i) => (
                 <div
                   key={i}
-                  className="cursor-pointer"
+                  className="cursor-pointer relative"
                   onClick={handleTokenClick}
                 >
                   <Image
@@ -59,13 +59,13 @@ export function FarmRow({
                     height={20}
                     src={token.icon}
                     alt={token.symbol}
-                    className="rounded-[calc(var(--radius)-2px)] border border-[#2a2a2a]"
+                    className="rounded-md border border-gray-200 bg-white"
                   />
                 </div>
               ))}
             </div>
             <div className="flex items-center gap-1 text-sm">
-              <span className="font-medium text-white">
+              <span className="font-medium text-gray-900">
                 {farm.tokens.map((t) => t.symbol).join("/")}
               </span>
               <Image
@@ -73,23 +73,25 @@ export function FarmRow({
                 height={14}
                 src={farm.protocol.icon}
                 alt={farm.protocol.name}
-                className="rounded-[calc(var(--radius)-2px)]"
+                className="rounded-md"
               />
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-gray-500">
                 {farm.protocol.name}
               </span>
             </div>
           </div>
         </td>
-        <td className="px-4 py-2 text-white">${farm.tvl.toLocaleString()}</td>
-        <td className="px-4 py-2 text-white">
+        <td className="px-4 py-2 text-gray-900">
+          ${farm.tvl.toLocaleString()}
+        </td>
+        <td className="px-4 py-2 text-gray-900">
           ${farm.weeklyRewards.toLocaleString()}
         </td>
-        <td className="px-4 py-2 text-white">{farm.apr.toFixed(2)}%</td>
-        <td className="px-4 py-2 text-white">{farm.apy.toFixed(2)}%</td>
+        <td className="px-4 py-2 text-gray-900">{farm.apr.toFixed(2)}%</td>
+        <td className="px-4 py-2 text-gray-900">{farm.apy.toFixed(2)}%</td>
         <td className="px-4 py-2">
           <button
-            className="text-gray-400 hover:text-white"
+            className="text-gray-400 hover:text-gray-900 transition-colors"
             onClick={(e) => {
               e.stopPropagation();
               // Handle download logic here
@@ -117,44 +119,32 @@ export function FarmRow({
           <td colSpan={7} className="p-0">
             <div className="animate-expand">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
-                <div className="flex flex-col gap-4 rounded border p-3 border-[#2a2a2a] bg-[#1c1c1c]">
-                  <h3 className="text-white text-lg">Farm</h3>
+                <div className="flex flex-col gap-4 rounded-md border border-gray-200 p-3 bg-white shadow-sm">
+                  <h3 className="text-gray-900 text-lg font-medium">Details</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Rewarded TVL</span>
-                      <span className="text-white">
+                      <span className="text-gray-500">Staked TVL</span>
+                      <span className="text-gray-900">
                         ${farm.tvl.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Active TVL</span>
-                      <span className="text-white">
-                        ${farm.tvl.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Staked TVL</span>
-                      <span className="text-white">
-                        ${farm.tvl.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Weekly Rewards</span>
-                      <span className="text-white">
+                      <span className="text-gray-500">Weekly Rewards</span>
+                      <span className="text-gray-900">
                         ${farm.weeklyRewards.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">(A/W/D)PR</span>
-                      <span className="text-white">
+                      <span className="text-gray-500">(A/W/D)PR</span>
+                      <span className="text-gray-900">
                         {farm.apr.toFixed(2)}% · 0.09% · 0.01%
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Contract</span>
+                      <span className="text-gray-500">Contract</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-white">0xdd23...f429</span>
-                        <button className="text-gray-400 hover:text-white">
+                        <span className="text-gray-900">0xdd23...f429</span>
+                        <button className="text-gray-400 hover:text-gray-900 transition-colors">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -184,9 +174,9 @@ export function FarmRow({
                             height={20}
                             className="rounded-full"
                           />
-                          <span className="text-gray-400">{token.symbol}</span>
+                          <span className="text-gray-500">{token.symbol}</span>
                         </div>
-                        <span className="text-white">
+                        <span className="text-gray-900">
                           ${(farm.tvl / 2).toLocaleString()}
                         </span>
                       </div>
@@ -194,12 +184,12 @@ export function FarmRow({
                   </div>
                 </div>
 
-                <div className="flex rounded border p-3 border-[#2a2a2a] bg-[#1c1c1c] flex-col gap-4">
-                  <h3 className="text-white text-lg">Pool</h3>
+                <div className="flex rounded-md border border-gray-200 p-3 bg-white shadow-sm flex-col gap-4">
+                  <h3 className="text-gray-900 text-lg font-medium">Pool</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-gray-400">In Range TVL</span>
-                      <span className="text-white">
+                      <span className="text-gray-500">In Range TVL</span>
+                      <span className="text-gray-900">
                         ${farm.tvl.toLocaleString()}
                       </span>
                     </div>

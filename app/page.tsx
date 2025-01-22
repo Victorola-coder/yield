@@ -13,6 +13,7 @@ export default function Home() {
   const [selectedFarm, setSelectedFarm] = useState<Farm>();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFarmId, setSelectedFarmId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function loadFarms() {
@@ -33,9 +34,6 @@ export default function Home() {
     loadFarms();
   }, []);
 
-  // Add search functionality
-  const [searchTerm, setSearchTerm] = useState("");
-
   const filteredFarms = farms.filter(
     (farm) =>
       farm.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -51,16 +49,16 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center pt-[3rem]">
+    <div className="flex h-full min-h-[calc(100vh)] w-full flex-col items-center justify-center bg-gray-50 pt-[3rem]">
       <div className="w-full flex-1 px-[0.25rem] pb-0 sm:px-0 md:pb-[3.5rem]">
         <div className="gap-2 pb-8">
           {/* Tabs Section */}
           <div className="mx-auto !mt-2 mb-2 flex max-w-[1500px] flex-col gap-2 p-0">
-            <div className="bg-[#1c1c1c] text-muted-foreground inline-flex h-12 items-center justify-center rounded-lg p-1 w-full">
-              <button className="bg-[#2a2a2a] text-white inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all w-full">
+            <div className="bg-white shadow-sm inline-flex h-12 items-center justify-center rounded-lg p-1 w-full">
+              <button className="bg-gray-100 text-gray-900 inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all w-full">
                 Farms
               </button>
-              <button className="text-gray-400 inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all w-full hover:bg-[#2a2a2a] hover:text-white">
+              <button className="text-gray-500 inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all w-full hover:bg-gray-50 hover:text-gray-900">
                 Deposits
               </button>
             </div>
@@ -75,19 +73,19 @@ export default function Home() {
                 <div className="flex gap-2">
                   <div className="flex w-full flex-col gap-2">
                     <div className="flex gap-2 top-3">
-                      <div className="flex h-10 w-full rounded-md border border-[#2a2a2a] bg-[#1c1c1c] text-sm">
+                      <div className="flex h-10 w-full rounded-md border border-gray-200 bg-white text-sm shadow-sm">
                         <input
-                          className="w-full bg-transparent px-3 py-1 text-white placeholder:text-gray-500 focus:outline-none"
+                          className="w-full bg-transparent px-3 py-1 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder={`Search ${farms.length} assets...`}
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
                           autoFocus
                         />
                       </div>
-                      {/* filter button */}
+                      {/* Filter button */}
                       <button
                         onClick={() => setIsFilterOpen(!isFilterOpen)}
-                        className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-[#2a2a2a] bg-[#1c1c1c] hover:bg-[#2a2a2a] text-white h-10 px-4 py-2"
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 h-10 px-4 py-2 shadow-sm transition-colors"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -116,35 +114,35 @@ export default function Home() {
                 </div>
 
                 {/* Table Component */}
-                <div className="relative overflow-x-auto rounded border border-[#2a2a2a] bg-[#1c1c1c]">
+                <div className="relative overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
                   <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
-                      <thead className="border-b border-[#2a2a2a]">
+                      <thead className="border-b border-gray-200 bg-gray-50">
                         <tr>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium"></th>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium"></th>
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium">
                             Asset
                           </th>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium">
                             TVL
                           </th>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium">
                             Weekly Rewards
                           </th>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium">
                             APR
                           </th>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium">
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium">
                             APY
                           </th>
-                          <th className="text-gray-400 h-12 px-4 text-left align-middle font-medium"></th>
+                          <th className="text-gray-600 h-12 px-4 text-left align-middle font-medium"></th>
                         </tr>
                       </thead>
                       <tbody>
                         {loading ? (
                           <tr>
                             <td colSpan={7}>
-                              <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
+                              <div className="bg-gray-50 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-500">
                                 Loading...
                               </div>
                             </td>
@@ -152,7 +150,7 @@ export default function Home() {
                         ) : error ? (
                           <tr>
                             <td colSpan={7}>
-                              <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
+                              <div className="bg-gray-50 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-500">
                                 {error}
                               </div>
                             </td>
@@ -160,7 +158,7 @@ export default function Home() {
                         ) : filteredFarms.length === 0 ? (
                           <tr>
                             <td colSpan={7}>
-                              <div className="bg-[#2a2a2a]/20 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-400">
+                              <div className="bg-gray-50 animate-pulse flex h-[290px] w-full items-center justify-center text-xs text-gray-500">
                                 No results found.
                               </div>
                             </td>
@@ -184,7 +182,7 @@ export default function Home() {
 
             {/* Right Side - Token Details */}
             {!loading && farms.length > 0 && (
-              <div className="w-full lg:w-[400px] border-t lg:border-t-0 lg:border-l border-[#2a2a2a] bg-[#1c1c1c]">
+              <div className="w-full lg:w-[400px] border-t lg:border-t-0 lg:border-l border-gray-200 bg-white shadow-sm">
                 <TokenDetails selectedFarm={selectedFarm || farms[0]} />
               </div>
             )}
