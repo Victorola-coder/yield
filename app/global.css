@@ -10,9 +10,9 @@
 }
 
 body {
-  color: white;
+  color: black;
   overflow-x: hidden;
-  background-color: #0f0f0f;
+  background-color: white;
 }
 
 body::-webkit-scrollbar {

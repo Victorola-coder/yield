@@ -119,26 +119,28 @@ export function TokenDetails({ selectedFarm }: TokenDetailsProps) {
         </div>
 
         {/* Position Graph */}
-        <div className="relative h-32 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+        <div className="relative h-32 rounded-lg border border-gray-200 bg-white p-4 shadow-sm overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-full w-1 bg-green-500/20"></div>
-            <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-green-500/20 to-transparent"></div>
+            <div className="h-full w-0.5 bg-green-500/50"></div>
+            <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-green-100 to-transparent"></div>
           </div>
         </div>
 
         {/* Automation Toggles */}
         <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between rounded-md border border-gray-200 bg-white p-4 shadow-sm">
+          <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
             <span className="text-sm text-gray-900">Automate Rebalancing</span>
-            <button className="relative h-6 w-11 rounded-full bg-gray-200 p-0.5">
-              <div className="absolute left-0.5 h-5 w-5 rounded-full bg-white shadow transition-all"></div>
-            </button>
+            <label className="relative inline-flex cursor-pointer items-center">
+              <input type="checkbox" className="peer sr-only" />
+              <div className="h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow-sm after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:outline-none"></div>
+            </label>
           </div>
-          <div className="flex items-center justify-between rounded-md border border-gray-200 bg-white p-4 shadow-sm">
+          <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
             <span className="text-sm text-gray-900">Automate Rewards</span>
-            <button className="relative h-6 w-11 rounded-full bg-gray-200 p-0.5">
-              <div className="absolute left-0.5 h-5 w-5 rounded-full bg-white shadow transition-all"></div>
-            </button>
+            <label className="relative inline-flex cursor-pointer items-center">
+              <input type="checkbox" className="peer sr-only" />
+              <div className="h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow-sm after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:outline-none"></div>
+            </label>
           </div>
         </div>
       </div>
