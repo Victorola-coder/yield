@@ -19,7 +19,10 @@ export default function Home() {
       try {
         const data = await getFarms();
         setFarms(data);
-        setSelectedFarm(data[0]); // Set first farm as default
+        if (data.length > 0) {
+          setSelectedFarm(data[0]);
+          setSelectedFarmId(data[0].id);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load farms");
       } finally {
