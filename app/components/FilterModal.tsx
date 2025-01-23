@@ -5,9 +5,10 @@ import { useState } from "react";
 interface FilterModalProps {
   isOpen: boolean;
   onClose: () => void;
+  buttonRect?: DOMRect | null;
 }
 
-export function FilterModal({ isOpen, onClose }: FilterModalProps) {
+export function FilterModal({ isOpen, onClose, buttonRect }: FilterModalProps) {
   const [minTVL, setMinTVL] = useState("1");
   const [minAPR, setMinAPR] = useState("0");
   const [minWeeklyRewards, setMinWeeklyRewards] = useState("100");
@@ -21,12 +22,23 @@ export function FilterModal({ isOpen, onClose }: FilterModalProps) {
 
   if (!isOpen) return null;
 
+  const modalStyle = buttonRect
+    ? ({
+        position: "absolute",
+        top: `${buttonRect.bottom + 8}px`,
+        right: `${window.innerWidth - buttonRect.right}px`,
+      } as const)
+    : {};
+
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/20 flex items-start justify-end pt-16"
+      className="fixed inset-0 z-50 bg-transparent flex items-start justify-center"
       onClick={handleBackdropClick}
     >
-      <div className="w-[350px] rounded-lg border border-gray-200 bg-white p-4 shadow-lg">
+      <div
+        className="w-[350px] rounded-lg border border-gray-200 bg-white p-4 shadow-lg"
+        style={modalStyle}
+      >
         <div className="flex flex-col gap-6">
           {/* Chains */}
           <div className="space-y-2">

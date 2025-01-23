@@ -14,6 +14,9 @@ export default function Home() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFarmId, setSelectedFarmId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterButtonRect, setFilterButtonRect] = useState<DOMRect | null>(
+    null
+  );
 
   useEffect(() => {
     async function loadFarms() {
@@ -46,6 +49,12 @@ export default function Home() {
     setSelectedFarmId((currentId) => (currentId === farmId ? null : farmId));
     const farm = farms.find((f) => f.id === farmId);
     setSelectedFarm(farm);
+  };
+
+  const handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setFilterButtonRect(rect);
+    setIsFilterOpen(!isFilterOpen);
   };
 
   return (
@@ -84,7 +93,7 @@ export default function Home() {
                       </div>
                       {/* Filter button */}
                       <button
-                        onClick={() => setIsFilterOpen(!isFilterOpen)}
+                        onClick={handleFilterClick}
                         className="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 h-10 px-4 py-2 shadow-sm transition-colors"
                       >
                         <svg
@@ -192,6 +201,7 @@ export default function Home() {
       <FilterModal
         isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
+        buttonRect={filterButtonRect}
       />
     </div>
   );
