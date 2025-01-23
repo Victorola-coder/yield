@@ -126,14 +126,20 @@ export function FilterModal({ isOpen, onClose, buttonRect }: FilterModalProps) {
 
           {/* Show favorites */}
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-900">Show favorites only</span>
+            <span className="text-sm font-medium text-gray-900">
+              Show favorites only
+            </span>
             <button
               onClick={() => setShowFavorites(!showFavorites)}
-              className="relative h-6 w-11 rounded-full bg-gray-200 p-0.5"
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out ${
+                showFavorites ? "bg-blue-600" : "bg-gray-200"
+              }`}
+              role="switch"
+              aria-checked={showFavorites}
             >
-              <div
-                className={`absolute h-5 w-5 rounded-full bg-white shadow transition-all ${
-                  showFavorites ? "left-[calc(100%-20px)]" : "left-0.5"
+              <span
+                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out ${
+                  showFavorites ? "translate-x-5" : "translate-x-1"
                 }`}
               />
             </button>
